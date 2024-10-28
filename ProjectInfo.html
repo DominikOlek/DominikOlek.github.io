@@ -41,7 +41,7 @@
             <section>
                 <div class="left">
                     <h3>Opis</h3>
-                    <p>Opis <a href="index.html">Pokaż więcej...</a></p>
+                    <p class="opis">Opis <a href="index.html">Pokaż więcej...</a></p>
                 </div>
                 <div class="right">
                     <h3>Zagadnienia</h3>
@@ -88,3 +88,22 @@
 
 </body>
 </html>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const pr = urlParams.get('name')
+    const content = document.querySelector(".opis");
+    fetch(pr + '/opis.docx')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Błąd podczas ładowania pliku');
+            }
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById('output').textContent = data;
+        })
+        .catch(error => {
+            console.error('Wystąpił błąd:', error);
+            content.textContent = 'Nie udało się załadować pliku.';
+        });
+</script>
