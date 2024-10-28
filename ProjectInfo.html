@@ -92,7 +92,7 @@
     const urlParams = new URLSearchParams(window.location.search);
     const pr = urlParams.get('name')
     const content = document.querySelector(".opis");
-    fetch(pr + '/opis.docx')
+    fetch(pr + '/opis.txt')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Błąd podczas ładowania pliku');
