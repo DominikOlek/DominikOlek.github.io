@@ -177,7 +177,7 @@
     }
 
     function GetOpis(name) {
-        fetch('Proj/'+name + '/opis.txt')
+        return fetch('Proj/'+name + '/opis.txt')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Błąd podczas ładowania pliku');
@@ -194,7 +194,7 @@
     }
 
     function GetZag(name) {
-        fetch('Proj/' + name + '/zagadnienia.txt')
+        return fetch('Proj/' + name + '/zagadnienia.txt')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Błąd podczas ładowania pliku');
