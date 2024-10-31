@@ -1,3 +1,3 @@
-FS1
-FS2
-FS3
+FS1.png
+FS2.png
+FS3.png

@@ -157,11 +157,11 @@
                     <section class="shadow">
                         <div class="left">
                             <h3>Opis</h3>
-                            <p>`+ GetOpis(v) + ` <a href="ProjectInfo.html?name=` + v +`'">Pokaż więcej...</a></p>
+                            <p>`+ return GetOpis(v) + ` <a href="ProjectInfo.html?name=` + v +`'">Pokaż więcej...</a></p>
                         </div>
                         <div class="right">
                             <h3>Zagadnienia</h3>
-                            <ul class="ownsymbol">`+GetZag(v)+`
+                            <ul class="ownsymbol">`+ return GetZag(v)+`
                             </ul>
                         </div>
                     </section>
@@ -180,9 +180,8 @@
                 }
                 return response.text();
             })
-            .then(res => {
-                console.log(res);
-                return res;
+            .then(respon => {
+                return respon;
             })
             .catch(error => {
                 console.error('Wystąpił błąd:', error);
