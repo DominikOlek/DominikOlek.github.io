@@ -180,9 +180,9 @@
                 }
                 return response.text();
             })
-            .then(data => {
-                console.log(data);
-                return data;
+            .then(res => {
+                console.log(res);
+                return res;
             })
             .catch(error => {
                 console.error('Wystąpił błąd:', error);
@@ -198,9 +198,9 @@
                 }
                 return response.text();
             })
-            .then(data => {
+            .then(respon => {
                 let res = "";
-                data.split('\n').forEach((v, k) => {
+                respon.split('\n').forEach((v, k) => {
                     res += "<li>" + v + "</li>";
                 });
                 return res;
