@@ -92,6 +92,7 @@
     const content = document.querySelector(".setplatform"); 
     const searchForm = document.forms["searchForm"];
     const resultPlace = document.getElementById("main");
+    const list;
     fetch('projekty.txt')
         .then(response => {
             if (!response.ok) {
@@ -100,7 +101,7 @@
             return response.text();
         })
         .then(data => {
-            const list = data.split('#');
+            list = data.split('#');
         })
         .catch(error => {
             console.error('Wystąpił błąd:', error);
