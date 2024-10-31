@@ -102,6 +102,23 @@
         })
         .then(data => {
             list = data.split('#');
+            list.forEach((v, k) => {
+                let split = k.split('\n');
+                platform.push(split[0]);
+                let last = options.length;
+                const newEl = document.createElement("option");
+                newEl.innerHTML = split[0];
+                newEl.setAttribute('value', last);
+                if (split[0] == pr) {
+                    newEl.setAttribute("selected", "selected");
+                }
+                content.appendChild(newEl);
+                options.push([]);
+                for (let i = 1; i < split.length; i++) {
+                    options[last].push(split[i]);
+                }
+            });
+            Update();
         })
         .catch(error => {
             console.error('Wystąpił błąd:', error);
@@ -110,23 +127,6 @@
     let platform = [];
     let options = [];
 
-    list.forEach((v, k) => {
-        let split = k.split('\n');
-        platform.push(split[0]);
-        let last = options.length;
-        const newEl = document.createElement("option");
-        newEl.innerHTML = split[0];
-        newEl.setAttribute('value', last);
-        if (split[0] == pr) {
-            newEl.setAttribute("selected", "selected");
-        }
-        content.appendChild(newEl);
-        options.push([]);
-        for (let i = 1; i < split.length; i++) {
-            options[last].push(split[i]);
-        }
-    });
-    Update();
     function Update() {
         let platform = searchForm.platform.value;
         let fraza = searchForm.fraza.value;
