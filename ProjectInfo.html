@@ -38,7 +38,7 @@
     </header>
     <main>
         <div class="Part">
-            <h1>Farming</h1>
+            <h1 class="title"></h1>
             <section>
                 <div class="left">
                     <h3>Opis</h3>
@@ -89,6 +89,8 @@
     const galeriaEl = document.querySelector(".galery");
     const galeryHrefEl = document.querySelector("#galeryHref");
     galeryHrefEl.setAttribute("href", "gallery.html#" + pr);
+    const titleEl = document.querySelector(".title");
+    titleEl.textContent = pr;
 
     fetch('Proj/' + pr + '/opis.txt')
         .then(response => {
