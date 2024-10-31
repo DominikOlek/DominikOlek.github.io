@@ -26,9 +26,9 @@
                 <li class="parent">
                     <a href="index.html#plat">Projekty</a>
                     <ul class="child">
-                        <li><a href="projUnit.html">Unity</a></li>
-                        <li><a href="index.html">.NET</a></li>
-                        <li><a href="index.html">Blender</a></li>
+                        <li><a href="projUnit.html?name=Unity">Unity</a></li>
+                        <li><a href="projUnit.html?name=.NET">.NET</a></li>
+                        <li><a href="projUnit.html?name=Blender">Blender</a></li>
                     </ul>
                 </li>
             </ol>
@@ -115,7 +115,7 @@
         .then(data => {
             const p = data.split('\n');
             p.forEach((el, ind) => {
-                if (el.length <= 1) { continue; }
+                if (el.length <= 1) { return; }
                 zagadnieniaEl.innerHTML += "<li>" + el + "</li>"
             })
         })
@@ -134,7 +134,7 @@
         .then(data => {
             const p = data.split('\n');
             p.forEach((el, ind) => {
-                if (el.length <= 1) { continue; }
+                if (el.length <= 1) { return; }
                 celEl.innerHTML += "<li>" + el + "</li>"
             })
         })
@@ -153,7 +153,7 @@
         .then(data => {
             const p = data.split('\n');
             p.forEach((el, ind) => {
-                if (el.length <= 1) { continue; }
+                if (el.length <= 1) { return; }
                 problemEl.innerHTML += "<li>" + el + "</li>"
             })
         })
@@ -172,7 +172,7 @@
         .then(data => {
             const p = data.split('\n');
             p.forEach((el, ind) => {
-                if (el.length <= 1) { continue; }
+                if (el.length <= 1) { return; }
                 ekstraEl.innerHTML += "<li>" + el + "</li>"
             })
         })
@@ -191,7 +191,7 @@
         .then(data => {
             const p = data.split('\n');
             p.forEach((el, ind) => {
-                if (el.length <= 1) { continue; }
+                if (el.length <= 1) { return; }
                 galeriaEl.innerHTML += `<a href="_" class="big-image"><img src="img/` + el + `" /></a>`;
             })
         })
