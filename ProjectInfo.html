@@ -115,6 +115,7 @@
         .then(data => {
             const p = data.split('\n');
             p.forEach((el, ind) => {
+                if (el.length <= 1) { continue; }
                 zagadnieniaEl.innerHTML += "<li>" + el + "</li>"
             })
         })
@@ -133,6 +134,7 @@
         .then(data => {
             const p = data.split('\n');
             p.forEach((el, ind) => {
+                if (el.length <= 1) { continue; }
                 celEl.innerHTML += "<li>" + el + "</li>"
             })
         })
@@ -151,6 +153,7 @@
         .then(data => {
             const p = data.split('\n');
             p.forEach((el, ind) => {
+                if (el.length <= 1) { continue; }
                 problemEl.innerHTML += "<li>" + el + "</li>"
             })
         })
@@ -169,6 +172,7 @@
         .then(data => {
             const p = data.split('\n');
             p.forEach((el, ind) => {
+                if (el.length <= 1) { continue; }
                 ekstraEl.innerHTML += "<li>" + el + "</li>"
             })
         })
@@ -187,7 +191,8 @@
         .then(data => {
             const p = data.split('\n');
             p.forEach((el, ind) => {
-                galeriaEl.innerHTML += `<a href="" class="big-image"><img src="img/` + el + ` /></a>`;
+                if (el.length <= 1) { continue; }
+                galeriaEl.innerHTML += `<a href="_" class="big-image"><img src="img/` + el + `" /></a>`;
             })
         })
         .catch(error => {

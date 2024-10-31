@@ -93,6 +93,9 @@
     const searchForm = document.forms["searchForm"];
     const resultPlace = document.getElementById("main");
     var list;
+
+    let platform = [];
+    let options = [];
     fetch('projekty.txt')
         .then(response => {
             if (!response.ok) {
@@ -103,6 +106,7 @@
         .then(data => {
             list = data.split('#');
             list.forEach((v, k) => {
+                if (v.length <= 2) { continue; }
                 let split = v.split('\n');
                 platform.push(split[0]);
                 let last = options.length;
@@ -115,6 +119,7 @@
                 content.appendChild(newEl);
                 options.push([]);
                 for (let i = 1; i < split.length; i++) {
+                    if (split[i].length <= 1) { continue; }
                     options[last].push(split[i]);
                 }
             });
@@ -124,19 +129,16 @@
             console.error('Wystąpił błąd:', error);
         });
 
-    let platform = [];
-    let options = [];
-
     function Update() {
-        let platform = searchForm.platform.value;
+        let selectPlatform = searchForm.platform.value;
         let fraza = searchForm.fraza.value;
         resultPlace.innerHTML = ``;
-        if (platform == -1) {
+        if (selectPlatform == -1) {
             for (let i = 0; i < platform.length; i++) {
                 Generuj(i, fraza);
             }
         } else {
-            Generuj(platform, fraza);
+            Generuj(selectPlatform, fraza);
         }
         return false;
     }
@@ -154,11 +156,12 @@
                     <h1>`+v+`</h1>
                     <section class="shadow">
                         <div class="left">
-                            <p>`+ GetOpis(v) + ` <a href="location.href='ProjectInfo.html?name=` + v +`'">Pokaż więcej...</a></p>
+                            <h3>Opis</h3>
+                            <p>`+ GetOpis(v) + ` <a href="ProjectInfo.html?name=` + v +`'">Pokaż więcej...</a></p>
                         </div>
                         <div class="right">
                             <h3>Zagadnienia</h3>
-                            <ul class="ownsymbol">`+GetZag()+`
+                            <ul class="ownsymbol">`+GetZag(v)+`
                             </ul>
                         </div>
                     </section>
@@ -170,6 +173,7 @@
     }
 
     function GetOpis(name) {
+        console.log(name);
         fetch('Proj/'+name + '/opis.txt')
             .then(response => {
                 if (!response.ok) {
