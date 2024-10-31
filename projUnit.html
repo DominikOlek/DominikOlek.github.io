@@ -152,8 +152,39 @@
                 //newEl.appendChild(document.createElement(h1).textContent(v));
                 //let sect = document.createElement("section").setAttribute("class", "shadow");
                 //newEl.appendChild(sect);
-                GetOpis(v);
-                GetZag(v);
+                fetch('Proj/' + v + '/opis.txt')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Błąd podczas ładowania pliku');
+                        }
+                        return response.text();
+                    })
+                    .then(respon => {
+                        opis = respon;
+                    })
+                    .catch(error => {
+                        console.error('Wystąpił błąd:', error);
+                    });
+
+                fetch('Proj/' + v + '/zagadnienia.txt')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Błąd podczas ładowania pliku');
+                        }
+                        return response.text();
+                    })
+                    .then(respon => {
+                        let res = "";
+                        respon.split('\n').forEach((v, k) => {
+                            res += "<li>" + v + "</li>";
+                        });
+                        zag = res;
+                    })
+                    .catch(error => {
+                        console.error('Wystąpił błąd:', error);
+                    });
+                //GetOpis(v);
+                //GetZag(v);
                 resultPlace.innerHTML += `
                 <div class="Part" onclick="location.href='ProjectInfo.html?name=`+v+`'">
                     <h1>`+v+`</h1>
