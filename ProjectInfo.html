@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jim+Nightshade&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <header>
@@ -45,40 +46,29 @@
                 </div>
                 <div class="right">
                     <h3>Zagadnienia</h3>
-                    <ul class="ownsymbol">
-                        <li>Programowanie obiektowe</li>
-                        <li>Eksport modeli 3D</li>
-                        <li>Implementacja właściwości fizycznych obiektów</li>
-                        <li>Wpływ na obiekt Terenu</li>
-                        <li>Podstawowe animacje</li>
+                    <ul class="ownsymbol zagad">
                     </ul>
                 </div>
             </section>
             <section>
                 <div class="smallleft">
                     <h3>Cel</h3>
-                    <p class="opis" >Opis</p>
+                    <ul class="ownsymbol cel">
+                    </ul>
                 </div>
                 <div class="smallmiddle">
                     <h3>Problemy/Nauka</h3>
-                    <p>Opis <a href="index.html">Pokaż więcej...</a></p>
+                    <ul class="ownsymbol problemy">
+                    </ul>
                 </div>
                 <div class="smallright">
                     <h3>Dlaczego porzucono</h3>
-                    <ul class="ownsymbol">
-                        <li>Programowanie obiektowe</li>
-                        <li>Eksport modeli 3D</li>
-                        <li>Implementacja właściwości fizycznych obiektów</li>
-                        <li>Wpływ na obiekt Terenu</li>
-                        <li>Podstawowe animacje</li>
+                    <ul class="ownsymbol ekstra">
                     </ul>
                 </div>
             </section>
-            <h3>Zdjęcia <a href="gallery.html#Far">(Zobacz więcej w galerii)</a></h3>
+            <h3>Zdjęcia <a id="galeryHref" href="gallery.html#">(Zobacz więcej w galerii)</a></h3>
             <div class="galery">
-                <a href="projUnit.html" class="big-image"><img src="img/FS1.png" /></a>
-                <a href="projUnit.html" class="big-image"><img src="img/FS2.png" /></a>
-                <a href="" class="big-image"><img src="img/FS3.png" /></a>
             </div>
         </div>
     </main>
@@ -91,8 +81,16 @@
 <script>
     const urlParams = new URLSearchParams(window.location.search);
     const pr = urlParams.get('name')
-    const content = document.querySelector(".opis");
-    fetch(pr + '/opis.txt')
+    const opisEl = document.querySelector(".opis");
+    const zagadnieniaEl = document.querySelector(".zagad");
+    const celEl = document.querySelector(".cel");
+    const problemEl = document.querySelector(".problemy");
+    const ekstraEl = document.querySelector(".ekstra");
+    const galeriaEl = document.querySelector(".galery");
+    const galeryHrefEl = document.querySelector("#galeryHref");
+    galeryHrefEl.setAttribute("href", "gallery.html#" + pr);
+
+    fetch('Proj/' + pr + '/opis.txt')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Błąd podczas ładowania pliku');
@@ -100,10 +98,100 @@
             return response.text();
         })
         .then(data => {
-            content.textContent = data;
+            opisEl.textContent = data;
         })
         .catch(error => {
             console.error('Wystąpił błąd:', error);
-            content.textContent = 'Nie udało się załadować pliku.';
+            opisEl.textContent = 'Nie udało się załadować pliku.';
+        });
+
+    fetch('Proj/' + pr + '/zagadnienia.txt')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Błąd podczas ładowania pliku');
+            }
+            return response.text();
+        })
+        .then(data => {
+            const p = data.split('\n');
+            p.forEach((el, ind) => {
+                zagadnieniaEl.innerHTML += "<li>" + el + "</li>"
+            })
+        })
+        .catch(error => {
+            console.error('Wystąpił błąd:', error);
+            zagadnieniaEl.textContent = 'Nie udało się załadować pliku.';
+        });
+
+    fetch('Proj/' + pr + '/cele.txt')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Błąd podczas ładowania pliku');
+            }
+            return response.text();
+        })
+        .then(data => {
+            const p = data.split('\n');
+            p.forEach((el, ind) => {
+                celEl.innerHTML += "<li>" + el + "</li>"
+            })
+        })
+        .catch(error => {
+            console.error('Wystąpił błąd:', error);
+            celEl.textContent = 'Nie udało się załadować pliku.';
+        });
+
+    fetch('Proj/' + pr + '/problemy.txt')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Błąd podczas ładowania pliku');
+            }
+            return response.text();
+        })
+        .then(data => {
+            const p = data.split('\n');
+            p.forEach((el, ind) => {
+                problemEl.innerHTML += "<li>" + el + "</li>"
+            })
+        })
+        .catch(error => {
+            console.error('Wystąpił błąd:', error);
+            problemEl.textContent = 'Nie udało się załadować pliku.';
+        });
+
+    fetch('Proj/' + pr + '/zakonczenie.txt')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Błąd podczas ładowania pliku');
+            }
+            return response.text();
+        })
+        .then(data => {
+            const p = data.split('\n');
+            p.forEach((el, ind) => {
+                ekstraEl.innerHTML += "<li>" + el + "</li>"
+            })
+        })
+        .catch(error => {
+            console.error('Wystąpił błąd:', error);
+            ekstraEl.textContent = 'Nie udało się załadować pliku.';
+        });
+
+    fetch('Proj/' + pr + '/galeria.txt')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Błąd podczas ładowania pliku');
+            }
+            return response.text();
+        })
+        .then(data => {
+            const p = data.split('\n');
+            p.forEach((el, ind) => {
+                galeriaEl.innerHTML += `<a href="" class="big-image"><img src="img/` + el + ` /></a>`;
+            })
+        })
+        .catch(error => {
+            console.error('Wystąpił błąd:', error);
+            galeriaEl.textContent = 'Nie udało się załadować pliku.';
         });
 </script>

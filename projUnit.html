@@ -37,45 +37,172 @@
     </header>
     <main>
         <div class="Part">
-            <form>
-                <label>Wyszukaj: <small>(jaby tu było tego dużo ¯\_(ツ)_/¯)</small> <input class="shadow" type="search" placeholder="Wprowadź frazę" /></label>
+            <form name="searchForm" onsubmit="return Update()">
+                <label>Wyszukaj: <small>(jaby tu było tego dużo ¯\_(ツ)_/¯)</small> <input class="shadow" oninput="return Update()" name="fraza" type="search" placeholder="Wprowadź frazę" /></label>
+                <label>
+                    <select name="platform" class="setplatform">
+                        <option value="-1">Wszystkie</option>
+                    </select>
+                </label>
                 <br />
                 <input class="shadow" type="submit" value="Wyszukaj" />
             </form>
         </div>
-        <div class="Part" onclick="location.href='ProjectInfo.html?name=fs'">
-            <h1>Farming</h1>
-            <section class="shadow">
-                <div class="left">
-                    <p>Opis <a href="index.html">Pokaż więcej...</a></p>
-                </div>
-                <div class="right">
-                    <h3>Zagadnienia</h3>
-                    <ul class="ownsymbol">
-                        <li>Programowanie obiektowe</li>
-                        <li>Eksport modeli 3D</li>
-                        <li>Implementacja właściwości fizycznych obiektów</li>
-                        <li>Wpływ na obiekt Terenu</li>
-                        <li>Podstawowe animacje</li>
-                    </ul>
-                </div>
-            </section>
+        <div id="main">
+        <!--<div class="Part" onclick="location.href='ProjectInfo.html?name=fs'">
+        <h1>Farming</h1>
+        <section class="shadow">
+            <div class="left">
+                <p>Opis <a href="index.html">Pokaż więcej...</a></p>
+            </div>
+            <div class="right">
+                <h3>Zagadnienia</h3>
+                <ul class="ownsymbol">
+                    <li>Programowanie obiektowe</li>
+                    <li>Eksport modeli 3D</li>
+                    <li>Implementacja właściwości fizycznych obiektów</li>
+                    <li>Wpływ na obiekt Terenu</li>
+                    <li>Podstawowe animacje</li>
+                </ul>
+            </div>
+        </section>
+        <h2></h2>
+        </div>
+        <div class="Part">
+            <h1>Nightmare Night</h1>
+            <p>Opis <a href="">Pokaż więcej...</a></p>
             <h2></h2>
-            </div>
-            <div class="Part">
-                <h1>Nightmare Night</h1>
-                <p>Opis <a href="">Pokaż więcej...</a></p>
-                <h2></h2>
-            </div>
-            <div class="Part">
-                <h1>GameIsGame</h1>
-                <p>Opis <a href="">Pokaż więcej...</a></p>
-                <h2></h2>
-            </div>
-</main>
+        </div>
+        <div class="Part">
+            <h1>GameIsGame</h1>
+            <p>Opis <a href="">Pokaż więcej...</a></p>
+            <h2></h2>
+        </div>-->
+        </div>
+    </main>
     <footer>
         <p>&copy; Copyright by Dominik Oleksy 2024</p>
     </footer>
 
 </body>
 </html>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const pr = urlParams.get('name')
+    const content = document.querySelector(".setplatform"); 
+    const searchForm = document.forms["searchForm"];
+    const resultPlace = document.getElementById("main");
+    fetch('projekty.txt')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Błąd podczas ładowania pliku');
+            }
+            return response.text();
+        })
+        .then(data => {
+            const list = data.split('#');
+        })
+        .catch(error => {
+            console.error('Wystąpił błąd:', error);
+        });
+
+    let platform = [];
+    let options = [];
+
+    list.forEach((v, k) => {
+        let split = k.split('\n');
+        platform.push(split[0]);
+        let last = options.length;
+        const newEl = document.createElement("option");
+        newEl.innerHTML = split[0];
+        newEl.setAttribute('value', last);
+        if (split[0] == pr) {
+            newEl.setAttribute("selected", "selected");
+        }
+        content.appendChild(newEl);
+        options.push([]);
+        for (let i = 1; i < split.length; i++) {
+            options[last].push(split[i]);
+        }
+    });
+    Update();
+    function Update() {
+        let platform = searchForm.platform.value;
+        let fraza = searchForm.fraza.value;
+        resultPlace.innerHTML = ``;
+        if (platform == -1) {
+            for (let i = 0; i < platform.length; i++) {
+                Generuj(i, fraza);
+            }
+        } else {
+            Generuj(platform, fraza);
+        }
+        return false;
+    }
+
+    function Generuj(i, fraza) {
+        options[i].forEach((v, k) => {
+            if (fraza == "" || (v.search(fraza)) > -1) {
+                //let newEl = document.createElement("div");
+                //newEl.setAttribute("class", "Part").setAttribute("onclick", "location.href='ProjectInfo.html?name=" + v + "'");
+                //newEl.appendChild(document.createElement(h1).textContent(v));
+                //let sect = document.createElement("section").setAttribute("class", "shadow");
+                //newEl.appendChild(sect);
+                resultPlace.innerHTML += `
+                <div class="Part" onclick="location.href='ProjectInfo.html?name=`+v+`'">
+                    <h1>`+v+`</h1>
+                    <section class="shadow">
+                        <div class="left">
+                            <p>`+ GetOpis(v) + ` <a href="location.href='ProjectInfo.html?name=` + v +`'">Pokaż więcej...</a></p>
+                        </div>
+                        <div class="right">
+                            <h3>Zagadnienia</h3>
+                            <ul class="ownsymbol">`+GetZag()+`
+                            </ul>
+                        </div>
+                    </section>
+                    <h2></h2>
+                </div>
+                `;
+            };
+        });
+    }
+
+    function GetOpis(name) {
+        fetch('Proj/'+name + '/opis.txt')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Błąd podczas ładowania pliku');
+                }
+                return response.text();
+            })
+            .then(data => {
+                return data;
+            })
+            .catch(error => {
+                console.error('Wystąpił błąd:', error);
+                return 'Nie udało się załadować pliku.';
+            });
+    }
+
+    function GetZag(name) {
+        fetch('Proj/' + name + '/zagadnienia.txt')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Błąd podczas ładowania pliku');
+                }
+                return response.text();
+            })
+            .then(data => {
+                let res = "";
+                data.split('\n').forEach((v, k) => {
+                    res += "<li>" + v + "</li>";
+                });
+                return res;
+            })
+            .catch(error => {
+                console.error('Wystąpił błąd:', error);
+                return 'Nie udało się załadować pliku.';
+            });
+    }
+</script>

@@ -226,7 +226,7 @@ footer p{
     text-align:center;
 }
 
-form input{
+form input, form select{
     border:none;
     width: 20vw;
     height:2vw;
@@ -237,11 +237,19 @@ form input{
     border-radius: 7px;
 }
 
+form select{
+    text-align:center;
+    font-size:1em;
+}
+select:hover {
+    text-shadow: var(--main-color) 0px 0px 12px;
+}
+
 .ownsymbol {
     text-align:left;
     list-style: none;
 }
-.ownsymbol li:before {
-    content: "->";
-    padding-right:5px;
-}
+    .ownsymbol li:before {
+        content: "⇒";
+        padding-right: 5px;
+    }
