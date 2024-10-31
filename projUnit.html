@@ -92,7 +92,7 @@
     const content = document.querySelector(".setplatform"); 
     const searchForm = document.forms["searchForm"];
     const resultPlace = document.getElementById("main");
-    const list;
+    var list;
     fetch('projekty.txt')
         .then(response => {
             if (!response.ok) {
