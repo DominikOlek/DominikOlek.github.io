@@ -142,7 +142,8 @@
         }
         return false;
     }
-
+    var opis = "";
+    var zag = "";
     function Generuj(i, fraza) {
         options[i].forEach((v, k) => {
             if (fraza == "" || (v.search(fraza)) > -1) {
@@ -151,17 +152,19 @@
                 //newEl.appendChild(document.createElement(h1).textContent(v));
                 //let sect = document.createElement("section").setAttribute("class", "shadow");
                 //newEl.appendChild(sect);
+                GetOpis(v);
+                GetZag(v);
                 resultPlace.innerHTML += `
                 <div class="Part" onclick="location.href='ProjectInfo.html?name=`+v+`'">
                     <h1>`+v+`</h1>
                     <section class="shadow">
                         <div class="left">
                             <h3>Opis</h3>
-                            <p>`+ return GetOpis(v) + ` <a href="ProjectInfo.html?name=` + v +`'">Pokaż więcej...</a></p>
+                            <p>`+ opis + ` <a href="ProjectInfo.html?name=` + v +`'">Pokaż więcej...</a></p>
                         </div>
                         <div class="right">
                             <h3>Zagadnienia</h3>
-                            <ul class="ownsymbol">`+ return GetZag(v)+`
+                            <ul class="ownsymbol">`+ zag+`
                             </ul>
                         </div>
                     </section>
@@ -181,6 +184,7 @@
                 return response.text();
             })
             .then(respon => {
+                opis = respon;
                 return respon;
             })
             .catch(error => {
@@ -202,6 +206,7 @@
                 respon.split('\n').forEach((v, k) => {
                     res += "<li>" + v + "</li>";
                 });
+                zag = res;
                 return res;
             })
             .catch(error => {
