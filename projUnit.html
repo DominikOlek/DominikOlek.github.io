@@ -142,8 +142,7 @@
         }
         return false;
     }
-    var opis = "";
-    var zag = "";
+
     function Generuj(i, fraza) {
         options[i].forEach((v, k) => {
             if (fraza == "" || (v.search(fraza)) > -1) {
@@ -152,6 +151,8 @@
                 //newEl.appendChild(document.createElement(h1).textContent(v));
                 //let sect = document.createElement("section").setAttribute("class", "shadow");
                 //newEl.appendChild(sect);
+                let opis = "";
+                let zag = "";
                 fetch('Proj/' + v + '/opis.txt')
                     .then(response => {
                         if (!response.ok) {
@@ -161,6 +162,7 @@
                     })
                     .then(respon => {
                         opis = respon;
+                        console.log(res);
                     })
                     .catch(error => {
                         console.error('Wystąpił błąd:', error);
@@ -179,6 +181,7 @@
                             res += "<li>" + v + "</li>";
                         });
                         zag = res;
+                        console.log(res);
                     })
                     .catch(error => {
                         console.error('Wystąpił błąd:', error);
@@ -191,11 +194,11 @@
                     <section class="shadow">
                         <div class="left">
                             <h3>Opis</h3>
-                            <p>`+ opis + ` <a href="ProjectInfo.html?name=` + v +`'">Pokaż więcej...</a></p>
+                            <p>'`+ opis + `' <a href="ProjectInfo.html?name=` + v +`'">Pokaż więcej...</a></p>
                         </div>
                         <div class="right">
                             <h3>Zagadnienia</h3>
-                            <ul class="ownsymbol">`+ zag+`
+                            <ul class="ownsymbol">'`+ zag+`'
                             </ul>
                         </div>
                     </section>
@@ -215,7 +218,7 @@
                 return response.text();
             })
             .then(respon => {
-                opis = respon;
+                //opis = respon;
                 return respon;
             })
             .catch(error => {
@@ -237,7 +240,7 @@
                 respon.split('\n').forEach((v, k) => {
                     res += "<li>" + v + "</li>";
                 });
-                zag = res;
+                //zag = res;
                 return res;
             })
             .catch(error => {
