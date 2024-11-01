@@ -46,6 +46,7 @@ mainheader {
         margin: 0 0 0 6em;
     }
     mainheader img {
+        height:185px;
     }
 header {
     width: 100%;
@@ -53,13 +54,16 @@ header {
     display: flex;
     flex-direction: column;
 }
-nav {
+nav, .mobile {
     display: flex;
     gap:1px;
     flex-wrap: nowrap;
     align-items: center;
     text-align: center;
     height: 3em;
+}
+.mobile{
+    display:none;
 }
 nav ol , nav ul{
     display:inline;
@@ -130,6 +134,7 @@ section {
     flex-direction: row;
     justify-content: space-between;
     padding: 0 5%;
+    flex-wrap:wrap;
 }
 .smallleft, .smallright, .smallmiddle {
     width: 30%;
@@ -143,6 +148,9 @@ section {
     font-size: 3.5em;
     text-align:center;
 }
+    .left h3 {
+        text-align: center;
+    }
 .right {
     width: 40%;
 }
@@ -170,8 +178,8 @@ section {
     flex-wrap:wrap;
 }
 .image {
-    width: 15vw;
-    height: 15vw;
+    width: 16vw;
+    height: 16vw;
     overflow: hidden;
     box-shadow: var(--main-color) 0 0 10px;
     margin-bottom: 5%;
@@ -190,11 +198,12 @@ section {
     }
 
 .big-image {
-    margin:3% 1%;
+    margin: 3% 1%;
     width: 30%;
     overflow: hidden;
     box-shadow: var(--main-color) 0 0 10px;
     aspect-ratio: 16 / 9;
+    border-radius: 10px;
 }
     .big-image img, .big-image-vertical img {
         width: 100%;
@@ -207,12 +216,16 @@ section {
         height: 110%;
         transform: translate(-5%,-5%);
     }
+    .big-image:hover {
+        cursor: pointer;
+    }
 .big-image-vertical {
     margin: 3% 1%;
     width: 20%;
     overflow: hidden;
     box-shadow: var(--main-color) 0 0 10px;
     aspect-ratio: 9/18;
+    border-radius: 10px;
 }
 
 footer {
@@ -226,15 +239,17 @@ footer p{
     text-align:center;
 }
 
-form input, form select{
+form input, form select, textarea{
     border:none;
-    width: 20vw;
-    height:2vw;
-    margin-left:1vw;
-    margin-top:1vw;
+    width: 30em;
+    height:3em;
+    margin: 1.5em 2em;
     background-color: var(--bg-color);
     color: var(--main-color);
     border-radius: 7px;
+}
+form label{
+    display:inline-block;
 }
 
 form select{
@@ -253,3 +268,258 @@ select:hover {
         content: "⇒";
         padding-right: 5px;
     }
+
+#ShowImage {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    overflow: hidden;
+    box-shadow: var(--main-color) 0 0 30px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity linear 0.5s;
+    border-radius:10px;
+}
+#ShowImage img{
+    width:100%;
+}
+    #ShowImage div {
+        position: absolute;
+        top: 3%;
+        right: 3%;
+        width: 2vw;
+        height: 2vw;
+        text-align: center;
+        line-height: -0.5vw;
+        font-size: 1.5vw;
+        background-color: rgba(255,255,255,0.3);
+        color: rgba(255,255,255,0.6);
+        opacity:0.4;
+        border-radius:50%;
+        border: 1px solid black;
+    }
+
+        #ShowImage div:hover {
+            font-size: 2vw;
+            line-height: 2vw;
+            color: var(--bg-color);
+            opacity: 0.7;
+            cursor:pointer;
+        }
+
+.vertical {
+    aspect-ratio: 9 / 18;
+    width:25%;
+}
+
+.horizontal {
+    aspect-ratio: 16 / 9;
+    width: 75%;
+}
+
+.fa {
+    text-align: center;
+    padding: 0.8em;
+    border-radius:50%;
+}
+
+    .fa:hover {
+        font-style: normal;
+    }
+
+.fa-facebook {
+    width:20px;
+    height:20px;
+    grid-area: fb;
+}
+
+.fa-github {
+    grid-area: git;
+    padding: 0;
+}
+.fa-phone {
+    grid-area: tel;
+}
+.title {
+    grid-area:title;
+}
+.icons {
+    display: grid;
+    justify-content:center;
+    grid-template-columns: 10% 31% 10%;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "title title title"
+        "fb tel git";
+}
+.contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content:space-evenly;
+}
+.simple{
+    flex-basis:50%;
+}
+
+.area {
+    width: 100%;
+    flex-basis: 100%;
+}
+.area textarea{
+    width:80%;
+}
+
+.barBlock{
+    float:right;
+    margin-right:10px;
+}
+.bar1, .bar2, .bar3 {
+    height: 5px;
+    width: 40px;
+    background-color: var(--main-color);
+    margin: 9px 0;
+    transition: 0.4s;
+}
+.change .bar1 {
+    transform: translate(0, 13.8px) rotate(-45deg);
+}
+
+.change .bar2 {
+    opacity: 0;
+}
+
+.change .bar3 {
+    transform: translate(0, -13.8px) rotate(45deg);
+}
+
+
+@media only screen and (max-width: 800px) {
+    mainheader img {
+        height: 165px;
+    }
+
+    .left {
+        width: 100%;
+    }
+
+        .left h2 {
+            font-size: 3em;
+        }
+
+    .right {
+        width: 100%;
+    }
+
+        .right h4 {
+            font-size: 2em;
+        }
+
+    .image {
+        width: 18vw;
+        height: 18vw;
+    }
+
+    .big-image {
+        width: 45%;
+    }
+
+    .big-image-vertical {
+        width: 30%;
+    }
+
+    .vertical {
+        width: 40%;
+    }
+
+    .horizontal {
+        width: 90%;
+    }
+
+    .Part h1 {
+        font-size:1.5em;
+    }
+
+    form input, form select, textarea {
+        width: 20em;
+        height: 3.5em;
+        margin: 0.7em 1.4em;
+    }
+    .smallleft, .smallright, .smallmiddle {
+        width: 100%;
+    }
+    .icons {
+        grid-template-columns: 15% 50% 15%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    mainheader h1 {
+        font-size: 3em;
+    }
+    mainheader img {
+        height: 125px;
+    }
+    .normal{
+        display:none;
+    }
+    .mobile{
+        display:flex;
+        align-items:center;
+        justify-content:flex-end;
+    }
+    .mobile h1{
+        width:100%;
+    }
+    .hiddenNav {
+        opacity: 1;
+        visibility: visible;
+        display: flex;
+        padding: 0;
+        margin: 0;
+        flex-wrap: wrap;
+        position: absolute;
+        width: 100%;
+        background-color: var(--bg-color);
+        transform: translate(0,58%);
+        font-size: 1.6em;
+        transition: all ease-in-out 0.4s;
+    }
+    .hide {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .barEl{
+        width:100%;
+        padding:6px 0;
+        border-top:1px solid var(--main-color);
+    }
+    .submenu li{
+        text-align:justify;
+        margin-left:50%;
+    }
+    .image {
+        width: 23vw;
+        height: 23vw;
+    }
+    .vertical {
+        width: 60%;
+    }
+
+    form input, form select, textarea {
+        width: 20em;
+        height: 2.7em;
+        margin: 0.7em 1.4em;
+        font-size: 0.7em;
+    }
+    form label{
+        font-size:1.3em;
+    }
+
+    .icons {
+        grid-template-columns: 17% 65% 17%;
+    }
+
+}

@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jim+Nightshade&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <header>
@@ -19,7 +20,7 @@
             </div>
             <img class="shadow" src="Ja.png" alt="Oto ja" />
         </mainheader>
-        <nav>
+        <nav class="normal">
             <a class="el" href="index.html">Główna</a>
             <ol class="el">
                 <li class="parent">
@@ -31,8 +32,31 @@
                     </ul>
                 </li>
             </ol>
-            <a class="el" href="index.html">Galeria</a>
-            <a class="el" href="index.html">Kontakt</a>
+            <a class="el" href="gallery.html"><b>Galeria</b></a>
+            <a class="el" href="Kontakt.html">Kontakt</a>
+        </nav>
+        <nav class="mobile">
+            <h1>Strona główna</h1>
+            <div class="barBlock" onclick="Animate(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <div class="hiddenNav hide">
+                <a class="barEl" href="index.html">Strona główna</a>
+                <ol class="barEl">
+                    <li class="parent">
+                        <a href="#plat">Projekty</a>
+                        <ul class="ownsymbol submenu">
+                            <li><a href="projUnit.html?name=Unity">Unity</a></li>
+                            <li><a href="projUnit.html?name=.NET">.NET</a></li>
+                            <li><a href="projUnit.html?name=Blender">Blender</a></li>
+                        </ul>
+                    </li>
+                </ol>
+                <a class="barEl" href="gallery.html"><b>Galeria</b></a>
+                <a class="barEl" href="Kontakt.html">Kontakt</a>
+            </div>
         </nav>
     </header>
     <main>
@@ -40,11 +64,11 @@
             <h1 id="Class Mercator">Class Mercator</h1>
             <h2></h2>
             <div class="galery">
-                <a href="" class="big-image"><img src="img/BL1.png" /></a>
-                <a href="" class="big-image"><img src="img/BL2.png" /></a>
-                <a href="" class="big-image"><img src="img/BL3.png" /></a>
-                <a href="" class="big-image"><img src="img/BL4.png" /></a>
-                <a href="" class="big-image"><img src="img/BL5.png" /></a>
+                <div class="big-image"><img onclick="Show(this)" src="img/BL1.png" /></div>
+                <div class="big-image"><img onclick="Show(this)" src="img/BL2.png" /></div>
+                <div class="big-image"><img onclick="Show(this)" src="img/BL3.png" /></div>
+                <div class="big-image"><img onclick="Show(this)" src="img/BL4.png" /></div>
+                <div class="big-image"><img onclick="Show(this)" src="img/BL5.png" /></div>
                 <video class="big-image" controls>
                     <source src="img/BL.mp4" type="video/mp4">
                     Your browser does not support the video tag.
@@ -58,26 +82,26 @@
             <h2></h2>
             <h1 id="ZPB MobileApi">ZPB Mobile</h1>
             <div class="galery">
-                <a href="" class="big-image-vertical"><img src="img/XAM1.jpg" /></a>
-                <a href="" class="big-image-vertical"><img src="img/XAM2.jpg" /></a>
-                <a href="" class="big-image-vertical"><img src="img/XAM3.jpg" /></a>
-                <a href="" class="big-image-vertical"><img src="img/XAM4.jpg" /></a>
-                <a href="" class="big-image-vertical"><img src="img/XAM5.jpg" /></a>
+                <div class="big-image-vertical"><img onclick="Show(this,true)" src="img/XAM1.jpg" /></div>
+                <div class="big-image-vertical"><img onclick="Show(this,true)" src="img/XAM2.jpg" /></div>
+                <div class="big-image-vertical"><img onclick="Show(this,true)" src="img/XAM3.jpg" /></div>
+                <div class="big-image-vertical"><img onclick="Show(this,true)" src="img/XAM4.jpg" /></div>
+                <div class="big-image-vertical"><img onclick="Show(this,true)" src="img/XAM5.jpg" /></div>
                 <h2></h2>
             </div>
 
             <h1 id="ZPB WebApi">ZPB Web</h1>
             <div class="galery">
-                <a href="" class="big-image"><img src="img/SWP1.png" /></a>
-                <a href="" class="big-image"><img src="img/SWP2.png" /></a>
-                <a href="" class="big-image"><img src="img/SWP3.png" /></a>
+                <div class="big-image"><img onclick="Show(this)" src="img/SWP1.png" /></div>
+                <div class="big-image"><img onclick="Show(this)" src="img/SWP2.png" /></div>
+                <div class="big-image"><img onclick="Show(this)" src="img/SWP3.png" /></div>
                 <h2></h2>
             </div>
 
             <h1 id="Park+">Park+</h1>
             <div class="galery">
-                <a href="" class="big-image"><img src="img/PARK1.png" /></a>
-                <a href="" class="big-image"><img src="img/PARK2.png" /></a>
+                <div class="big-image"><img onclick="Show(this)" src="img/PARK1.png" /></div>
+                <div class="big-image"><img onclick="Show(this)" src="img/PARK2.png" /></div>
                 <h2></h2>
             </div>
         </div>
@@ -87,37 +111,66 @@
 
             <h1 id="Farming">Farming</h1>
             <div class="galery">
-                <a href="" class="big-image"><img src="img/FS1.png" /></a>
-                <a href="" class="big-image"><img src="img/FS2.png" /></a>
-                <a href="" class="big-image"><img src="img/FS3.png" /></a>
+                <div class="big-image"><img onclick="Show(this)" src="img/FS1.png" /></div>
+                <div class="big-image"><img onclick="Show(this)" src="img/FS2.png" /></div>
+                <div class="big-image"><img onclick="Show(this)" src="img/FS3.png" /></div>
                 <h2></h2>
             </div>
 
             <h1 id="NightmareNight">Nightmare Night</h1>
             <div class="galery">
-                <a href="" class="big-image"><img src="img/NN1.png" /></a>
-                <a href="" class="big-image"><img src="img/NN2.png" /></a>
-                <a href="" class="big-image"><img src="img/NN3.png" /></a>
-                <a href="" class="big-image"><img src="img/NN4.png" /></a>
-                <a href="" class="big-image"><img src="img/NN6.png" /></a>
-                <a href="" class="big-image"><img src="img/NN7.png" /></a>
+                <div class="big-image"><img onclick="Show(this)" src="img/NN1.png" /></div>
+                <div class="big-image"><img onclick="Show(this)" src="img/NN2.png" /></div>
+                <div class="big-image"><img onclick="Show(this)" src="img/NN3.png" /></div>
+                <div class="big-image"><img onclick="Show(this)" src="img/NN4.png" /></div>
+                <div class="big-image"><img onclick="Show(this)" src="img/NN6.png" /></div>
+                <div class="big-image"><img onclick="Show(this)" src="img/NN7.png" /></div>
                 <h2></h2>
             </div>
 
             <h1 id="GameIsGame">GameIsGame</h1>
             <div class="galery">
-                <a href="" class="big-image"><img src="img/GG1.png" /></a>
-                <a href="" class="big-image"><img src="img/GG2.png" /></a>
-                <a href="" class="big-image"><img src="img/GG3.png" /></a>
-                <a href="" class="big-image"><img src="img/GG4.png" /></a>
-                <a href="" class="big-image"><img src="img/GG5.png" /></a>
+                <div class="big-image"><img onclick="Show(this)" src="img/GG1.png" /></div>
+                <div class="big-image"><img onclick="Show(this)" src="img/GG2.png" /></div>
+                <div class="big-image"><img onclick="Show(this)" src="img/GG3.png" /></div>
+                <div class="big-image"><img onclick="Show(this)" src="img/GG4.png" /></div>
+                <div class="big-image"><img onclick="Show(this)" src="img/GG5.png" /></div>
                 <h2></h2>
             </div>
         </div>
     </main>
+    <div id="ShowImage">
+        <img id="Image" src="" />
+        <div onclick="Close(this)">X</div>
+    </div>
     <footer>
         <p>&copy; Copyright by Dominik Oleksy 2024</p>
     </footer>
 
 </body>
 </html>
+<script>
+    const galery = document.getElementById("ShowImage");
+    const Img = document.getElementById("Image");
+    function Show(el, vert = false) {
+        if (vert) {
+            galery.setAttribute("class", "vertical");
+        } else {
+            galery.setAttribute("class", "horizontal");
+        }
+        let path = el.getAttribute("src");
+        Img.src = path;
+        galery.style.visibility = "visible";
+        galery.style.opacity = 1;
+    }
+    function Close() {
+        galery.style.opacity = 0;
+        setTimeout(() => { galery.style.visibility = "hidden"; }, 500);
+    }
+
+    const nav = document.querySelector(".hiddenNav");
+    function Animate(el) {
+            el.classList.toggle("change");
+        nav.classList.toggle("hide");
+    }
+</script>

@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jim+Nightshade&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header>
+        <mainheader>
+            <div>
+                <h1>Moje projekty</h1>
+                <h4>Dominik Oleksy</h4>
+            </div>
+            <img class="shadow" src="Ja.png" alt="Oto ja" />
+        </mainheader>
+        <nav class="normal">
+            <a class="el" href="index.html">Główna</a>
+            <ol class="el">
+                <li class="parent">
+                    <a href="index.html#plat">Projekty</a>
+                    <ul class="child">
+                        <li><a href="projUnit.html?name=Unity">Unity</a></li>
+                        <li><a href="projUnit.html?name=.NET">.NET</a></li>
+                        <li><a href="projUnit.html?name=Blender">Blender</a></li>
+                    </ul>
+                </li>
+            </ol>
+            <a class="el" href="gallery.html">Galeria</a>
+            <a class="el" href="Kontakt.html"><b>Kontakt</b></a>
+        </nav>
+        <nav class="mobile">
+            <h1>Kontakt</h1>
+            <div class="barBlock" onclick="Animate(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <div class="hiddenNav hide">
+                <a class="barEl" href="index.html">Strona główna</a>
+                <ol class="barEl">
+                    <li class="parent">
+                        <a href="#plat"><b>Projekty</b></a>
+                        <ul class="ownsymbol submenu">
+                            <li><a href="projUnit.html?name=Unity">Unity</a></li>
+                            <li><a href="projUnit.html?name=.NET">.NET</a></li>
+                            <li><a href="projUnit.html?name=Blender">Blender</a></li>
+                        </ul>
+                    </li>
+                </ol>
+                <a class="barEl" href="gallery.html">Galeria</a>
+                <a class="barEl" href="Kontakt.html"><b>Kontakt</b></a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="Part icons">
+            <h3 class="title">Moje dane kontaktowe</h3>
+            <a href="facebook.com" class="fa fa-facebook fa-2x"></a>
+            <a class="fa fa-phone fa-2x"> 000 222 333</a>
+            <a href="github.com" class="fa fa-github fa-5x"></a>
+        </div>
+
+        <div class="Part">
+            <h3>Skontaktuj się tutaj</h3>
+            <form class="contact" name="contact" action="*" method="get">
+                <label class="simple">Podaj email: <br><input class="shadow" name="name" type="text" placeholder="Wprowadź email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required oninvalid="this.setCustomValidity('Podaj w formacie email')" oninput="this.setCustomValidity('')"/></label>
+                <label class="simple">Podaj imię: <br><input class="shadow" name="name" type="text" placeholder="Wprowadź imię" required minlength="3" oninvalid="this.setCustomValidity('Musisz podać imię')" oninput="this.setCustomValidity('')"/></label>
+                <label class="simple">Podaj nazwisko: <br><input class="shadow" name="surname" type="text" placeholder="Wprowadź nazwisko" required minlength="3" oninvalid="this.setCustomValidity('Musisz podać nazwisko')" oninput="this.setCustomValidity('')"/></label>
+                <label class="simple">Podaj adres: <br><input class="shadow" name="name" type="text" placeholder="<Kod pocztowy> <Miejscowość>" required pattern="[0-9]{2}-[0-9]{3}\s[a-z0-9A-Z]{2,}$" oninvalid="this.setCustomValidity('Musisz podać <kod pocztowy> <miejscowość>')" oninput="this.setCustomValidity('')"/></label>
+                <label>
+                    Wybierz temat wiadomości:
+                    <select name="type" class="setplatform">
+                        <option value="cowork">Chęć współpracy</option>
+                        <option value="info">Pytanie o szczegóły</option>
+                        <option value="private">Prywatna wiadomość</option>
+                        <option value="other">Inne</option>
+                    </select>
+                </label>
+                <label class="area">
+                    Zadaj pytania: <br><textarea class="shadow" name="asks" placeholder="Napisz wiadomość" required minlength="10" maxlength="1000" oninvalid="this.setCustomValidity('Musisz podać od 10 do 1000 znaków')" oninput="this.setCustomValidity('')"></textarea>
+                </label>
+                <input class="shadow" type="submit" value="Wyślij" />
+            </form>
+            <br>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; Copyright by Dominik Oleksy 2024</p>
+    </footer>
+
+</body>
+</html>
+<script>
+    const nav = document.querySelector(".hiddenNav");
+    function Animate(el) {
+        el.classList.toggle("change");
+        nav.classList.toggle("hide");
+    }
+</script>

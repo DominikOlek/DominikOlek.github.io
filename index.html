@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jim+Nightshade&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <header>
@@ -19,8 +20,8 @@
             </div>
             <img class="shadow" src="Ja.png" alt="Oto ja"/>
         </mainheader>
-        <nav>
-            <a class="el" href="index.html">Główna</a>
+        <nav class="normal">
+            <a class="el" href="index.html"><b>Główna</b></a>
             <ol class="el">
                 <li class="parent">
                     <a href="#plat">Projekty</a>
@@ -32,11 +33,34 @@
                 </li>
             </ol>
             <a class="el" href="gallery.html">Galeria</a>
-            <a class="el" href="index.html">Kontakt</a>
+            <a class="el" href="Kontakt.html">Kontakt</a>
+        </nav>
+        <nav class="mobile">
+            <h1>Strona główna</h1>
+            <div class="barBlock" onclick="Animate(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <div class="hiddenNav hide">
+                <a class="barEl" href="index.html"><b>Strona główna</b></a>
+                <ol class="barEl">
+                    <li class="parent">
+                        <a href="#plat">Projekty</a>
+                        <ul class="ownsymbol submenu">
+                            <li><a href="projUnit.html?name=Unity">Unity</a></li>
+                            <li><a href="projUnit.html?name=.NET">.NET</a></li>
+                            <li><a href="projUnit.html?name=Blender">Blender</a></li>
+                        </ul>
+                    </li>
+                </ol>
+                <a class="barEl" href="gallery.html">Galeria</a>
+                <a class="barEl" href="Kontakt.html">Kontakt</a>
+            </div>
         </nav>
     </header>
     <main>
-        <section class="shadow">
+        <section id="sect" class="shadow">
             <div class="left">
                 <h2>O mnie</h2>
                 <p>Nazywam się <b>Dominik Oleksy</b>, mam 21 lat. Studiuję Informatykę na Akademii Górniczo Hutniczej w Krakowie, wcześniej uczęszczałem do technikum informatycznego CKZiU nr 2 w Wadowicach.
@@ -124,3 +148,12 @@
 
 </body>
 </html>
+<script>
+    const section = document.getElementById("sect");
+    const nav = document.querySelector(".hiddenNav");
+    function Animate(el) {
+        el.classList.toggle("change");
+        section.classList.toggle("shadow");
+        nav.classList.toggle("hide");
+    }
+</script>

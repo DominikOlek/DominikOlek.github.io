@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jim+Nightshade&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <header>
@@ -19,11 +20,11 @@
             </div>
             <img class="shadow" src="Ja.png" alt="Oto ja" />
         </mainheader>
-        <nav>
+        <nav class="normal">
             <a class="el" href="index.html">Główna</a>
             <ol class="el">
                 <li class="parent">
-                    <a href="index.html#plat">Projekty</a>
+                    <a href="index.html#plat"><b>Projekty</b></a>
                     <ul class="child">
                         <li><a href="projUnit.html?name=Unity">Unity</a></li>
                         <li><a href="projUnit.html?name=.NET">.NET</a></li>
@@ -32,7 +33,30 @@
                 </li>
             </ol>
             <a class="el" href="gallery.html">Galeria</a>
-            <a class="el" href="index.html">Kontakt</a>
+            <a class="el" href="Kontakt.html">Kontakt</a>
+        </nav>
+        <nav class="mobile">
+            <h1>Projekty</h1>
+            <div class="barBlock" onclick="Animate(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <div class="hiddenNav hide">
+                <a class="barEl" href="index.html">Strona główna</a>
+                <ol class="barEl">
+                    <li class="parent">
+                        <a href="#plat"><b>Projekty</b></a>
+                        <ul class="ownsymbol submenu">
+                            <li><a href="projUnit.html?name=Unity">Unity</a></li>
+                            <li><a href="projUnit.html?name=.NET">.NET</a></li>
+                            <li><a href="projUnit.html?name=Blender">Blender</a></li>
+                        </ul>
+                    </li>
+                </ol>
+                <a class="barEl" href="gallery.html">Galeria</a>
+                <a class="barEl" href="Kontakt.html">Kontakt</a>
+            </div>
         </nav>
     </header>
     <main>
@@ -40,6 +64,7 @@
             <form name="searchForm" onsubmit="return Update()">
                 <label>Wyszukaj: <small>(jaby tu było tego dużo ¯\_(ツ)_/¯)</small> <input class="shadow" oninput="return Update()" name="fraza" type="search" placeholder="Wprowadź frazę" /></label>
                 <label>
+                    Platforma:
                     <select name="platform" class="setplatform">
                         <option value="-1">Wszystkie</option>
                     </select>
@@ -49,10 +74,11 @@
             </form>
         </div>
         <div id="main">
-        <!--<div class="Part" onclick="location.href='ProjectInfo.html?name=fs'">
+        <div class="Part" onclick="location.href='ProjectInfo.html?name=fs'">
         <h1>Farming</h1>
         <section class="shadow">
             <div class="left">
+                <h3>Opis</h3>
                 <p>Opis <a href="index.html">Pokaż więcej...</a></p>
             </div>
             <div class="right">
@@ -159,22 +185,22 @@
                         zag = result;
 
                         resultPlace.innerHTML += `
-<div class="Part" onclick="location.href='ProjectInfo.html?name=`+ v + `'">
-    <h1>`+ v + `</h1>
-    <section class="shadow">
-        <div class="left">
-            <h3>Opis</h3>
-            <p>`+ opis + ` <a href="ProjectInfo.html?name=` + v + `'">Pokaż więcej...</a></p>
-        </div>
-        <div class="right">
-            <h3>Zagadnienia</h3>
-            <ul class="ownsymbol">`+ zag + `
-            </ul>
-        </div>
-    </section>
-    <h2></h2>
-</div>
-`;
+                        <div class="Part" onclick="location.href='ProjectInfo.html?name=`+ v + `'">
+                            <h1>`+ v + `</h1>
+                            <section class="shadow">
+                                <div class="left">
+                                    <h3>Opis</h3>
+                                    <p>`+ opis + ` <a href="ProjectInfo.html?name=` + v + `">Pokaż więcej...</a></p>
+                                </div>
+                                <div class="right">
+                                    <h3>Zagadnienia</h3>
+                                    <ul class="ownsymbol">`+ zag + `
+                                    </ul>
+                                </div>
+                            </section>
+                            <h2></h2>
+                        </div>
+                        `;
                     });
                 });
                
@@ -218,5 +244,11 @@
                 console.error('Wystąpił błąd:', error);
                 return 'Nie udało się załadować pliku.';
             });
+    }
+
+    const nav = document.querySelector(".hiddenNav");
+    function Animate(el) {
+        el.classList.toggle("change");
+        nav.classList.toggle("hide");
     }
 </script>
